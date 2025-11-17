@@ -38,6 +38,33 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
+# Pappa ji ka Dosa app schemas
+
+class MenuItem(BaseModel):
+    """
+    Restaurant menu items
+    Collection name: "menuitem"
+    """
+    name: str = Field(..., description="Dish name")
+    description: Optional[str] = Field(None, description="Short description")
+    price: float = Field(..., ge=0, description="Price in INR")
+    category: str = Field(..., description="Category like Dosa, Idli, Drinks")
+    is_veg: bool = Field(True, description="Vegetarian item")
+    spicy_level: Optional[int] = Field(None, ge=0, le=5, description="Spice level 0-5")
+    image_url: Optional[str] = Field(None, description="Image URL")
+
+class Reservation(BaseModel):
+    """
+    Table reservations
+    Collection name: "reservation"
+    """
+    name: str = Field(..., description="Guest name")
+    phone: str = Field(..., description="Contact number")
+    date: str = Field(..., description="Date YYYY-MM-DD")
+    time: str = Field(..., description="Time HH:MM")
+    guests: int = Field(..., ge=1, le=20, description="Number of guests")
+    notes: Optional[str] = Field(None, description="Special requests")
+
 # Add your own schemas here:
 # --------------------------------------------------
 
